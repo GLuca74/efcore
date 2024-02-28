@@ -35,7 +35,8 @@ public class RelationalDatabase : Database
     /// <param name="relationalDependencies">Parameter object containing relational dependencies for this service.</param>
     public RelationalDatabase(
         DatabaseDependencies dependencies,
-        RelationalDatabaseDependencies relationalDependencies)
+        RelationalDatabaseDependencies relationalDependencies,
+        Microsoft.EntityFrameworkCore.TestService.TestServiceClass testServiceClass)
         : base(dependencies)
     {
         RelationalDependencies = relationalDependencies;

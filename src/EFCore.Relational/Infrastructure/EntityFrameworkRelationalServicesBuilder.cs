@@ -45,6 +45,8 @@ public class EntityFrameworkRelationalServicesBuilder : EntityFrameworkServicesB
     public static readonly IDictionary<Type, ServiceCharacteristics> RelationalServices
         = new Dictionary<Type, ServiceCharacteristics>
         {
+            { typeof(Microsoft.EntityFrameworkCore.TestService.TestServiceClass), new ServiceCharacteristics(ServiceLifetime.Singleton) },
+
             { typeof(IRowKeyValueFactoryFactory), new ServiceCharacteristics(ServiceLifetime.Singleton) },
             { typeof(IRowForeignKeyValueFactoryFactory), new ServiceCharacteristics(ServiceLifetime.Singleton) },
             { typeof(IRowIndexValueFactoryFactory), new ServiceCharacteristics(ServiceLifetime.Singleton) },
@@ -130,6 +132,7 @@ public class EntityFrameworkRelationalServicesBuilder : EntityFrameworkServicesB
     /// <returns>This builder, such that further calls can be chained.</returns>
     public override EntityFrameworkServicesBuilder TryAddCoreServices()
     {
+        TryAdd<Microsoft.EntityFrameworkCore.TestService.TestServiceClass, Microsoft.EntityFrameworkCore.TestService.TestServiceClass>();
         TryAdd<IParameterNameGeneratorFactory, ParameterNameGeneratorFactory>();
         TryAdd<IComparer<IReadOnlyModificationCommand>, ModificationCommandComparer>();
         TryAdd<IMigrationsIdGenerator, MigrationsIdGenerator>();
